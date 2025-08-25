@@ -1,4 +1,28 @@
 # This .gitignore file should be placed at the root of your Unity project directory
+
+# Игнорировать папку с ассетами
+# Игнорировать Downloaded ассеты
+/Assets/Downloaded/
+/Assets/Downloaded/**
+/UnityJP OOP Project/Assets/Downloaded/
+/UnityJP OOP Project/Assets/Downloaded/**
+
+/assets/
+/Assets/
+/asset/
+/Asset/
+
+# Или конкретные расширения файлов
+*.psd
+*.ai
+*.tga
+*.fbx
+*.blend
+*.max
+*.mp3
+*.wav
+*.mp4
+*.mov
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
