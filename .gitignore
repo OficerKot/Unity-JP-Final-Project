@@ -97,3 +97,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+.github/copilot-instructions.md
+Packages/com.merry-yellow.code-assist/Editor.meta
+Packages/com.merry-yellow.code-assist/Editor/EditorCoroutines.meta
+Packages/com.merry-yellow.code-assist/Editor/ExternalReferences.meta
+Packages/com.merry-yellow.code-assist/Editor/Input.meta
+Packages/com.merry-yellow.code-assist/Editor/Logger.meta
+Packages/com.merry-yellow.code-assist/Editor/Preferences.meta
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/PackageManagerSettings.asset
