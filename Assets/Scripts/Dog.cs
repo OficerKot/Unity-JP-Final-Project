@@ -20,6 +20,8 @@ public class Dog : Pet
     bool isBoosting;
     bool canBoost = true;
 
+   
+
     private void Awake()
     {
         SoundManager.Instance.PlayDogMusic();
@@ -112,6 +114,7 @@ public class Dog : Pet
         {
             if (col.CompareTag("Pushable"))
             {
+                col.enabled = false;
                 GrabItem(col.gameObject);
                 Debug.Log("Поднимаем объект: " + col.name);
                 break; // Берем первый подходящий предмет
@@ -124,7 +127,6 @@ public class Dog : Pet
     {
         heldItem = item;
         isHolding = true;
-
         // Отключаем физику у предмета
         Rigidbody rb = heldItem.GetComponent<Rigidbody>();
         if (rb != null)
@@ -145,6 +147,7 @@ public class Dog : Pet
     {
         if (heldItem != null && isHolding)
         {
+            Collider heldItemCollider = heldItem.GetComponent<Collider>();
             Rigidbody rb = heldItem.GetComponent<Rigidbody>();
             if (rb != null)
             {
@@ -153,6 +156,7 @@ public class Dog : Pet
             }
             heldItem.gameObject.transform.SetParent(null);
             heldItem = null;
+            heldItemCollider.enabled = true;
         }
         isHolding = false;
     }
