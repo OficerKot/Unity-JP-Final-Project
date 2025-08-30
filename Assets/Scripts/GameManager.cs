@@ -1,6 +1,7 @@
 using TMPro;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] int time;
+    [SerializeField] GameObject catObj;
+    [SerializeField] GameObject dogObj;
     private int score;
 
     public void Awake()
@@ -19,16 +22,34 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-    
+
     }
 
     private void Start()
     {
         StartGame();
     }
+
+    
     void StartGame()
     {
         StartCoroutine(Timer());
+        switch (DataManager.Instance.WhichPetIsSelected())
+        {
+            case DataManager.Pet.dog:
+                dogObj.SetActive(true);
+                break;
+            case DataManager.Pet.cat:
+                catObj.SetActive(true);
+                break;
+        }
+
+    }
+
+    void EndGame()
+    {
+        DataManager.Instance.SetCurScore(score);
+        SceneManager.LoadScene(2);
     }
     IEnumerator Timer()
     {
@@ -37,6 +58,7 @@ public class GameManager : MonoBehaviour
             timerText.text = "Time: " + time;
             yield return new WaitForSeconds(1);
         }
+        EndGame();
 
     }
 
@@ -48,7 +70,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator AddScoreSmoothly(int scoreToAdd)
     {
         int startScore = score;
-        while(score < startScore + scoreToAdd)
+        while (score < startScore + scoreToAdd)
         {
             score += 1;
             yield return new WaitForSeconds(0.02f);

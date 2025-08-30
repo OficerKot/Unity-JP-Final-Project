@@ -20,7 +20,7 @@ public class Cat : Pet
 
     private void Awake()
     {
-     
+
         SoundManager.Instance.PlayCatMusic();
     }
 
@@ -69,28 +69,28 @@ public class Cat : Pet
             }
         }
     }
-IEnumerator Boost()
-{
-    moveSpeed *= speedBoost;
-    isBoosting = true;
-    boostEffect.Play();
-    yield return new WaitForSeconds(boostTime);
-    boostEffect.Stop();
-    isBoosting = false;
-    moveSpeed /= speedBoost;
-    StartCoroutine(BoostDelay());
-}
+    IEnumerator Boost()
+    {
+        moveSpeed *= speedBoost;
+        isBoosting = true;
+        boostEffect.Play();
+        yield return new WaitForSeconds(boostTime);
+        boostEffect.Stop();
+        isBoosting = false;
+        moveSpeed /= speedBoost;
+        StartCoroutine(BoostDelay());
+    }
 
-IEnumerator BoostDelay()
-{
-    canBoost = false;
-    yield return new WaitForSeconds(boostDelay);
-    canBoost = true;
-}
+    IEnumerator BoostDelay()
+    {
+        canBoost = false;
+        yield return new WaitForSeconds(boostDelay);
+        canBoost = true;
+    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position + hitOffset, hitRange);
-  
+
     }
 }

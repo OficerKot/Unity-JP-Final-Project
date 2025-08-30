@@ -23,9 +23,17 @@ abstract public class Pet : MonoBehaviour
         TryGetComponent<Animator>(out anim);
         aud = GetComponent<AudioSource>();
         PetRb = GetComponent<Rigidbody>();
-        Physics.gravity *= gravityModifier;
+        SetGravity();
     }
 
+    void SetGravity()
+    {
+        if(Physics.gravity == DataManager.Instance.startGravity)
+        {
+            Physics.gravity *= gravityModifier;
+        }
+    }
+   
     public virtual void Update()
     {
         InputController();
@@ -44,6 +52,7 @@ abstract public class Pet : MonoBehaviour
     void Run()
     {
         float forwardInput = Input.GetAxis("Vertical");
+        Debug.Log(transform.forward.normalized);
         if (anim != null) Animate(forwardInput);
         PetRb.AddForce(forwardInput * transform.forward.normalized * moveSpeed);
     }
