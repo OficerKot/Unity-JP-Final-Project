@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class Cat : Pet
+public class Cat : Pet //INHERITANCE
 {
     [SerializeField] float hitForce;
 
@@ -25,7 +25,7 @@ public class Cat : Pet
     }
 
 
-    public override void SuperPower()
+    public override void SuperPower() // POLYMORPHISM &  ABSTRACTION
     {
         if (canBoost && !isBoosting)
         {
@@ -38,7 +38,7 @@ public class Cat : Pet
         }
     }
 
-    public override void Interact()
+    public override void Interact() // POLYMORPHISM & // ABSTRACTION
     {
         TryPushObject();
     }

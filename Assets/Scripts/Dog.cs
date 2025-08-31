@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Dog : Pet
+public class Dog : Pet // INHERITANCE
 {
     //interactions
     float grabRange = 1f;
@@ -27,7 +27,7 @@ public class Dog : Pet
     {
         SoundManager.Instance.PlayDogMusic();
     }
-    public override void Interact()
+    public override void Interact() // POLYMORPHISM & ABSTRACTION
     {
         if (!isHolding)
         {
@@ -36,16 +36,16 @@ public class Dog : Pet
         else ReleaseItem();
     }
 
-    public override void Update()
+    public override void Update() // POLYMORPHISM & ABSTRACTION
     {
-        InputController();
+        InputController(); 
 
         if ((isBoosting))
         {
             CreateExplosion();
         }
     }
-    public override void SuperPower()
+    public override void SuperPower() // POLYMORPHISM & ABSTRACTION
     {
         if (canBoost && !isBoosting) // первое нажатие клавиши, запуск отсчёта
         {

@@ -24,7 +24,8 @@ public class DataManager : MonoBehaviour
         DontDestroyOnLoad(Instance);
     }
 
-    public void SetCurScore(int score)
+    // ENCAPSULATION
+    public void SetCurScore(int score) 
     {
         curScore = score;
     }

@@ -47,7 +47,7 @@ abstract public class Pet : MonoBehaviour
         MoveLogic();
     }
 
-    void MoveLogic()
+    void MoveLogic() // ABSTRACTION
     {
         Run();
         Rotation();
@@ -85,7 +85,7 @@ abstract public class Pet : MonoBehaviour
         }
     }
 
-    void Animate(float forwardInput)
+    void Animate(float forwardInput) 
     {
         if (moveSpeed < 22)
         {
@@ -104,7 +104,7 @@ abstract public class Pet : MonoBehaviour
         yield return new WaitForSeconds(time);
         textToSay.text = "";
     }
-    public virtual void InputController()
+    public virtual void InputController() // ABSTRACTION
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -120,7 +120,7 @@ abstract public class Pet : MonoBehaviour
         }
 
     }
-    public virtual void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision) 
     {
         onGround = true;
     }
