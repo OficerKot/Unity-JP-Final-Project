@@ -1,3 +1,4 @@
+
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -11,6 +12,8 @@ abstract public class Pet : MonoBehaviour
     [SerializeField] protected float gravityModifier = 2;
     public TextMeshProUGUI textToSay;
 
+    float maxSayingDelay = 35;
+    float minSayingDelay = 10;
     Animator anim;
 
     protected AudioSource aud;
@@ -24,6 +27,7 @@ abstract public class Pet : MonoBehaviour
         aud = GetComponent<AudioSource>();
         PetRb = GetComponent<Rigidbody>();
         SetGravity();
+        StartCoroutine(MakeSoundInRandTime());
     }
 
     void SetGravity()
@@ -52,7 +56,6 @@ abstract public class Pet : MonoBehaviour
     void Run()
     {
         float forwardInput = Input.GetAxis("Vertical");
-        Debug.Log(transform.forward.normalized);
         if (anim != null) Animate(forwardInput);
         PetRb.AddForce(forwardInput * transform.forward.normalized * moveSpeed);
     }
@@ -70,12 +73,15 @@ abstract public class Pet : MonoBehaviour
         }
     }
 
-    void MakeSound()
+    IEnumerator MakeSoundInRandTime()
     {
         if (sounds.Length > 0)
         {
             int randIndx = Random.Range(0, sounds.Length);
+            float randSec = Random.Range(minSayingDelay, maxSayingDelay);
+            yield return new WaitForSeconds(randSec);
             aud.PlayOneShot(sounds[randIndx]);
+            StartCoroutine(MakeSoundInRandTime());
         }
     }
 
@@ -111,10 +117,6 @@ abstract public class Pet : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             SuperPower();
-        }
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            MakeSound();
         }
 
     }

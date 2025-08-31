@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+
 public class Dog : Pet
 {
     //interactions
@@ -114,9 +115,7 @@ public class Dog : Pet
         {
             if (col.CompareTag("Pushable"))
             {
-                col.enabled = false;
                 GrabItem(col.gameObject);
-                Debug.Log("Поднимаем объект: " + col.name);
                 break; // Берем первый подходящий предмет
             }
         }
@@ -137,6 +136,14 @@ public class Dog : Pet
             heldItem.transform.position = mouth.position;
         }
 
+        Collider[] allColliders = item.GetComponentsInChildren<Collider>();
+
+        // Отключаем каждый коллайдер
+        foreach (Collider col in allColliders)
+        {
+            col.enabled = false;
+        }
+
         // Делаем предмет дочерним к пасти (опционально)
 
         aud.PlayOneShot(grabSound, 0.3f);
@@ -153,6 +160,14 @@ public class Dog : Pet
             {
                 rb.isKinematic = false;
                 rb.useGravity = true;
+            }
+
+            Collider[] allColliders = heldItem.GetComponentsInChildren<Collider>();
+
+            // Включаем каждый коллайдер
+            foreach (Collider col in allColliders)
+            {
+                col.enabled = true;
             }
             heldItem.gameObject.transform.SetParent(null);
             heldItem = null;
